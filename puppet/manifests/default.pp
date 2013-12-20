@@ -99,6 +99,10 @@ class { 'memcached': }
 
 # --- Packages -----------------------------------------------------------------
 
+package { 'vim':
+  ensure => installed
+}
+
 package { 'curl':
   ensure => installed
 }
