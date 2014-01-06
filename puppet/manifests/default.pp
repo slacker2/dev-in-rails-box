@@ -1,4 +1,4 @@
-$ar_databases = ['activerecord_unittest', 'activerecord_unittest2']
+$ar_databases = ['development', 'test', 'production']
 $as_vagrant   = 'sudo -u vagrant -H bash -l -c'
 $home         = '/home/vagrant'
 
@@ -42,14 +42,14 @@ class install_mysql {
     require => Class['mysql::server']
   }
 
-  database_user { 'rails@localhost':
+  database_user { 'rails_app@localhost':
     ensure  => present,
     require => Class['mysql::server']
   }
 
-  database_grant { ['rails@localhost/activerecord_unittest', 'rails@localhost/activerecord_unittest2']:
+  database_grant { ['rails_app@localhost/development', 'rails_app@localhost/test']:
     privileges => ['all'],
-    require    => Database_user['rails@localhost']
+    require    => Database_user['rails_app@localhost']
   }
 
   package { 'libmysqlclient15-dev':
@@ -71,7 +71,7 @@ class install_postgres {
     require  => Class['postgresql::server']
   }
 
-  pg_user { 'rails':
+  pg_user { 'rails_app':
     ensure  => present,
     require => Class['postgresql::server']
   }
@@ -92,10 +92,6 @@ class install_postgres {
   }
 }
 class { 'install_postgres': }
-
-# --- Memcached ----------------------------------------------------------------
-
-class { 'memcached': }
 
 # --- Packages -----------------------------------------------------------------
 
@@ -139,7 +135,7 @@ exec { 'install_ruby':
   # The rvm executable is more suitable for automated installs.
   #
   # Thanks to @mpapis for this tip.
-  command => "${as_vagrant} '${home}/.rvm/bin/rvm install 2.0.0 --latest-binary --autolibs=enabled && rvm --fuzzy alias create default 2.0.0'",
+  command => "${as_vagrant} '${home}/.rvm/bin/rvm install 2.1.0 --latest-binary --autolibs=enabled && rvm --fuzzy alias create default 2.1.0'",
   creates => "${home}/.rvm/bin/ruby",
   require => Exec['install_rvm']
 }
