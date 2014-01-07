@@ -20,7 +20,7 @@ Building the virtual machine is this easy:
 
 That's it.
 
-If the base box is not present that command fetches it first. The setup itself takes about 3 minutes in a MacBook Air. After the installation has finished, you can access the virtual machine with
+If the base box is not present that command fetches it first. The setup itself can take a little while (maybe 30 minutes?). After the installation has finished, you can access the virtual machine with
 
     host $ vagrant ssh
     Welcome to Ubuntu 12.04 LTS (GNU/Linux 3.2.0-23-generic-pae i686)
