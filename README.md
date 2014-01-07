@@ -1,10 +1,8 @@
-# A Virtual Machine for Ruby on Rails Core Development
+# A Virtual Machine for Ruby on Rails Web Development
 
 ## Introduction
 
-This project automates the setup of a development environment for working on Ruby on Rails itself. Use this virtual machine to work on a pull request with everything ready to hack and run the test suites.
-
-Please note this virtual machine is not designed to be used for Rails application development.
+This repo is branched from the Rails Core development box (https://github.com/rails/rails-dev-box). This project automates the setup of a development environment for working with Ruby on Rails. Use this virtual machine to create websites and such.
 
 ## Requirements
 
@@ -16,18 +14,18 @@ Please note this virtual machine is not designed to be used for Rails applicatio
 
 Building the virtual machine is this easy:
 
-    host $ git clone https://github.com/rails/rails-dev-box.git
-    host $ cd rails-dev-box
+    host $ git clone https://github.com/slacker2/dev-in-rails-box.git
+    host $ cd dev-in-rails-box
     host $ vagrant up
 
 That's it.
 
-If the base box is not present that command fetches it first. The setup itself takes about 3 minutes in my MacBook Air. After the installation has finished, you can access the virtual machine with
+If the base box is not present that command fetches it first. The setup itself takes about 3 minutes in a MacBook Air. After the installation has finished, you can access the virtual machine with
 
     host $ vagrant ssh
     Welcome to Ubuntu 12.04 LTS (GNU/Linux 3.2.0-23-generic-pae i686)
     ...
-    vagrant@rails-dev-box:~$
+    vagrant@dev-in-rails-box:~$
 
 Port 3000 in the host computer is forwarded to port 3000 in the virtual machine. Thus, applications running in the virtual machine can be accessed via localhost:3000 in the host computer.
 
@@ -37,19 +35,20 @@ Port 3000 in the host computer is forwarded to port 3000 in the virtual machine.
 
 * RVM
 
-* Ruby 2.0.0 (binary RVM install)
+* Ruby 2.1.0 (binary RVM install)
 
 * Bundler
+
+* Rails
 
 * SQLite3, MySQL, and Postgres
 
 * System dependencies for nokogiri, sqlite3, mysql, mysql2, and pg
 
-* Databases and users needed to run the Active Record test suite
+* Databases and users for a generic setup (you should probably change this?)
 
 * Node.js for the asset pipeline
 
-* Memcached
 
 ## Recommended Workflow
 
@@ -59,21 +58,21 @@ The recommended workflow is
 
 * test within the virtual machine.
 
-Just clone your Rails fork into the rails-dev-box directory on the host computer:
+Just clone your Rails project into the dev-in-rails-box directory on the host computer:
 
     host $ ls
     README.md   Vagrantfile puppet
-    host $ git clone git@github.com:<your username>/rails.git
+    host $ git clone git@github.com:<your username>/<your project>.git
 
 Vagrant mounts that directory as _/vagrant_ within the virtual machine:
 
-    vagrant@rails-dev-box:~$ ls /vagrant
-    puppet  rails  README.md  Vagrantfile
+    vagrant@dev-in-rails-box:~$ ls /vagrant
+    puppet  <your project>  README.md  Vagrantfile
 
 Install gem dependencies in there:
 
-    vagrant@rails-dev-box:~$ cd /vagrant/rails
-    vagrant@rails-dev-box:/vagrant/rails$ bundle
+    vagrant@dev-in-rails-box:~$ cd /vagrant/rails
+    vagrant@dev-in-rails-box:/vagrant/rails$ bundle
 
 We are ready to go to edit in the host, and test in the virtual machine.
 
