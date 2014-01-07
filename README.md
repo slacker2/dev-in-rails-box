@@ -31,6 +31,8 @@ Port 3000 in the host computer is forwarded to port 3000 in the virtual machine.
 
 ## What's In The Box
 
+* Vim (My preference. You should probably modify the puppet conf with your editor of choice)
+
 * Git
 
 * RVM
