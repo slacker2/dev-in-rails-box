@@ -73,8 +73,8 @@ Vagrant mounts that directory as _/vagrant_ within the virtual machine:
 
 Install gem dependencies in there:
 
-    vagrant@dev-in-rails-box:~$ cd /vagrant/rails
-    vagrant@dev-in-rails-box:/vagrant/rails$ bundle
+    vagrant@dev-in-rails-box:~$ cd /vagrant/<your project>
+    vagrant@dev-in-rails-box:/vagrant/<your project>$ bundle
 
 We are ready to go to edit in the host, and test in the virtual machine.
 
