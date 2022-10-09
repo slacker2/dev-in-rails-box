@@ -30,8 +30,8 @@
 #   }
 #
 class mysql::config(
-  $root_password     = 'UNSET',
-  $old_root_password = '',
+  $root_password     = undef,
+  $old_root_password = undef,
   $bind_address      = $mysql::params::bind_address,
   $port              = $mysql::params::port,
   $etc_root_password = $mysql::params::etc_root_password,
@@ -80,7 +80,7 @@ class mysql::config(
   # manage root password if it is set
   if $root_password != 'UNSET' {
     case $old_root_password {
-      '':      { $old_pw='' }
+      '':      { $old_pw=undef }
       default: { $old_pw="-p'${old_root_password}'" }
     }
 
